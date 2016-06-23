@@ -1,0 +1,66 @@
+<h1>Welcome, {{username}}!</h1>
+<button><a href="/user/logout">Log Out</a></button>
+<p>Your balance: ${{balance}}</p>
+<h1>SELL</h1>
+	
+<form action="/user/sell" method="POST">
+	<span>Base</span>
+	<select name="item" id="item">
+		{{#each items}}
+			<option>{{this.item_name}}</option>
+		{{/each}}
+	</select>	
+</br>
+	<span>Prefix</span>
+	<a id="addPrefix" href="#">Add Prefix</a>
+	<select name="prefix1" id="prefix1">
+		{{#each prefixes}}
+			<option>{{this.name}}</option>
+		{{/each}}
+	</select>
+	<select name="prefix2" id="prefix2"></select>
+	<select name="prefix3" id="prefix3"></select>
+</br>
+	<span>Suffix</span>
+	<a id="addSuffix" href="#">Add Suffix</a>
+	<select name="suffix1" id="suffix1">
+		{{#each suffixes}}
+			<option>{{this.name}}</option>
+		{{/each}}
+	</select>
+	<select name="suffix2" id="suffix2"></select>
+	<select name="suffix3" id="suffix3"></select>
+</br>
+	<input type="text" name="cost" placeholder="Cost" required>
+	<input type="submit"> 
+</form>
+
+<div id="item-status">
+	<img id="item-img" src=""/>
+	<div id="prefixes">
+		<div id="prefix-info-1"></div>
+		<div id="prefix-info-2"></div>
+		<div id="prefix-info-3"></div>
+	</div>
+	<div id="suffixes">
+		<div id="suffix-info-1"></div>
+		<div id="suffix-info-2"></div>
+		<div id="suffix-info-3"></div>
+	</div>
+</div>
+
+<h1>You are selling:<h1>
+<ul>
+	{{#each selling}}
+		<li></li>
+	{{/each}}
+</ul>
+<h1>SHOPPING CART</h1>
+<ul>
+	{{#each cart}}
+		<li></li>
+	{{/each}}
+</ul>
+<button>Check Out</button>
+
+<script src="/javascripts/user.js"></script>
