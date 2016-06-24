@@ -78,7 +78,7 @@ app.get('/user/logout',function(req,res,next){
 });
 //Creating User
 app.post('/register/user',function(req,res,next){
-	db.none("INSERT INTO users(username,password) VALUES ('"+req.body.user+"','"+req.body.pw+"')")
+	db.none("INSERT INTO users(username,password,balance,address) VALUES ('"+req.body.user+"','"+req.body.pw+"','"+req.body.balance+"','"+req.body.address+"')")
 	.then(function(data){
 		res.redirect('/');
 	})
