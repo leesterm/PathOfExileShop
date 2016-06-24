@@ -43,7 +43,7 @@ app.post('/',function(req,res,next){
 		res.redirect('/user/');
 	})
 	.catch(function(err){
-		res.render('index',{title:"Path Of Exile Shop",error:'Incorrect username or password'});
+		res.render('index',{title:"Path Of Exile Shop",error:'Incorrect username or password',layout: 'layout-main'});
 	});
 });
 //User logged in, Get user information, prefix and suffix information, and bases information
