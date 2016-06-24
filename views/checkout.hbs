@@ -1,0 +1,19 @@
+<h1>Checkout</h1>
+<p>Shipping Address: {{address}}</p>
+<h2>Your Cart:</h2>
+{{#each cart_items}}
+	<div class="shop-item">
+		<a href="/user/item_info/?bind_id={{this.bind_id}}"><img src="/images/{{this.item_image}}"/></a>
+		<div><b>SELLER:</b> {{this.username}}</div>
+		<div>{{this.cost}} Exalted Orbs</div>
+	</div>
+{{/each}}
+
+<h2>Your Balance: {{balance}} Exalted Orbs</h2>
+<h2>Total: {{total}} Exalted Orbs</h2>
+<h2 id="remaining">Remaining Balance after Purchase: {{remaining}} Exalted Orbs</h2>
+
+<form action="" method="POST">
+	<input type="hidden" value="{{remaining}}" name="remaining">
+	<input type="submit" value="PURCHASE">
+</form>

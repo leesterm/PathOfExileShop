@@ -1,4 +1,5 @@
 <h1>Items Being Sold:</h1>
+<h2 id="empty-shop">{{empty}}</h2>
 {{#each items}}
 	<div class="shop-item">
 		<a href="/user/item_info/?bind_id={{this.bind_id}}"><img src="/images/{{this.item_image}}"/></a>
@@ -16,7 +17,9 @@
 		<div>{{this.cost}} Exalted Orbs</div>
 	</div>
 {{/each}}
+
 <h2>Total: {{total}} Exalted Orbs</h2>
-<form>
-	<input type="submit" value="Check Out">
-</form>
+<button>
+	<a href="/user/buy/checkout">Check Out
+	</a>
+</button>
