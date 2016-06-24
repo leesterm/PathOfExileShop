@@ -1,9 +1,4 @@
 <h1>Welcome, {{username}}!</h1>
-<button><a href="/user/logout">Log Out</a></button>
-<p>Your balance: ${{balance}}</p>
-
-<h1 id="buy"><a href="/user/buy">BUY</a></h1>
-
 <div id="main-content">
 	<div id="sell-window">
 		<h1 id="sell">SELL</h1>
@@ -15,7 +10,6 @@
 				{{/each}}
 			</select>	
 			</br>
-			<span>Prefix</span>
 			<a id="addPrefix" href="#">Add Prefix</a>
 			<select name="prefix1" id="prefix1">
 				{{#each prefixes}}
@@ -25,7 +19,6 @@
 			<select name="prefix2" id="prefix2"></select>
 			<select name="prefix3" id="prefix3"></select>
 			</br>
-			<span>Suffix</span>
 			<a id="addSuffix" href="#">Add Suffix</a>
 			<select name="suffix1" id="suffix1">
 				{{#each suffixes}}

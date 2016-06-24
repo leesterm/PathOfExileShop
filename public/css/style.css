@@ -1,9 +1,51 @@
 html{
+	background: url(/images/background-fm2.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	color:white;
 	font-family:Helvetica;
+}
+#index-fields{
+	position: absolute;
+	width: 700px;
+	height: 200px;
+	top: 50%;
+	left: 50%;
+	margin: -200px 0 0 -375px;
+	text-align:center;
+}
+#index-fields input{
+   width: 250px;
+   height: 25px;
+   font-size: 20px;
+}
+#index-fields h1{
+	color: rgba(0,0,0,0.8);
+}
+hr {
+	clear:both;
+}
+header{
+	padding-top:5px;
+	padding-left:5px;
+	padding-right:5px;
+	background: rgba(0,0,0,0.4);
+}
+#page-nav {
+	float:right;
+}
+#page-nav ul{
+	margin: 0 auto;
+}
+#page-nav li {
+	display:inline;
+	padding:10px;
 }
 a{
 	text-decoration:none;
-	color:black;
+	color:white;
 }
 #register-form{
 	display:none;
@@ -20,9 +62,24 @@ a{
 #suffix3{
 	display:none;
 }
+#main-content{
+	width:100%;
+}
+#sell-window{
+	text-align:center;
+	float:left;
+	display:inline;
+	width:40%;
+	padding:1%;
+	background: rgba(0,0,0,0.5);
+}
 #shop{
 	font-size:20px;
-	width:100%;
+	float:right;
+	display:inline;
+	width:55%;
+	padding:1%;
+	background: rgba(0,0,0,0.5);
 }
 .shop-item{
 	display:inline-block;
@@ -32,17 +89,12 @@ a{
 .shop-item img{
 	cursor:pointer;
 }
-#main-content{
-	width:100%;
+#item-information {
+	background: rgba(0,0,0,0.5);
+	padding:10px;
 }
-#sell-window{
+#item-information div{
+	width:500px;
+	margin:0 auto;
 	text-align:center;
-	float:left;
-	display:inline;
-	width:50%;
-}
-#shop{
-	float:left;
-	display:inline;
-	width:50%;
 }

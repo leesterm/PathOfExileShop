@@ -33,7 +33,7 @@ app.get('/',function(req,res,next){
 	if(req.session.username)
 		res.redirect('/user');
 	else
-		res.render('index',{title:"Path Of Exile Shop"});
+		res.render('index',{title:"Path Of Exile Shop",layout: 'layout-main'});
 });
 //Logging in
 app.post('/',function(req,res,next){
