@@ -27,6 +27,7 @@ a{
 .shop-item{
 	display:inline-block;
 	padding:10px;
+	text-align:center;
 }
 .shop-item img{
 	cursor:pointer;

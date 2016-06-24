@@ -188,11 +188,39 @@ app.get('/user/item_info',function(req,res,next){
 	console.log(req.query.bind_id);
 	db.any("SELECT * FROM binding,bases,set_of_affixes,affixes WHERE affixes.id = set_of_affixes.affix_id AND binding.bind_id = set_of_affixes.bind_id AND binding.base_id = bases.id AND binding.bind_id="+req.query.bind_id)
 	.then(function(item){
-		console.log(item);
 		res.render("item_info",{title:item[0].username+"'s "+item[0].item_name+" Information",item:item});
 	})
 	.catch(function(err){
 		console.log(err);
+	})
+});
+//View Buy Page
+app.get('/user/buy',function(req,res,next){
+	if(req.session.username){
+		db.any("SELECT * FROM binding,bases WHERE binding.base_id = bases.id AND binding.status='selling' AND binding.username <> '"+req.session.username+"'")
+		.then(function(items){
+			db.any("SELECT * FROM binding,bases WHERE binding.base_id = bases.id AND binding.status = 'in-cart' AND bind_id IN(SELECT bind_id FROM shopping_cart WHERE username='"+req.session.username+"')")
+			.then(function(cart_items){
+				console.log("Right now I am "+req.session.username);
+				db.one("SELECT SUM(cost) FROM binding,shopping_cart WHERE binding.bind_id=shopping_cart.bind_id AND status='in-cart' AND shopping_cart.username='"+req.session.username+"'")
+				.then(function(total){
+					console.log(total);
+					res.render('buy',{title:"Items Being Sold",items:items,cart_items:cart_items,total:total.sum});
+				})
+			})
+		})
+	}
+	else
+		res.redirect('/');
+});
+//Buy an item
+app.get('/user/buy_item',function(req,res,next){
+	db.none("INSERT INTO shopping_cart(username,bind_id) VALUES('"+req.session.username+"',"+req.query.bind_id+")")
+	.then(function(){
+		db.none("UPDATE binding SET status='in-cart' WHERE bind_id="+req.query.bind_id)
+		.then(function(){
+			res.redirect('/user/buy/');
+		});
 	})
 });
 

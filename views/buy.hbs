@@ -1,0 +1,22 @@
+<h1>Items Being Sold:</h1>
+{{#each items}}
+	<div class="shop-item">
+		<a href="/user/item_info/?bind_id={{this.bind_id}}"><img src="/images/{{this.item_image}}"/></a>
+		<div><b>SELLER:</b> {{this.username}}</div>
+		<div>{{this.cost}} Exalted Orbs</div>
+		<h2><a href="/user/buy_item/?bind_id={{this.bind_id}}">BUY</a></h2>
+	</div>
+{{/each}}
+
+<h1>Shopping Cart</h1>
+{{#each cart_items}}
+	<div class="shop-item">
+		<a href="/user/item_info/?bind_id={{this.bind_id}}"><img src="/images/{{this.item_image}}"/></a>
+		<div><b>SELLER:</b> {{this.username}}</div>
+		<div>{{this.cost}} Exalted Orbs</div>
+	</div>
+{{/each}}
+<h2>Total: {{total}} Exalted Orbs</h2>
+<form>
+	<input type="submit" value="Check Out">
+</form>
