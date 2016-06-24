@@ -66,6 +66,7 @@ CREATE TABLE binding(
 CREATE TABLE set_of_affixes(
 	bind_id serial REFERENCES binding(bind_id),
 	affix_id serial REFERENCES affixes(id)
+	/*value integer*/
 );
 CREATE TABLE shopping_cart(
 	username varchar(32) REFERENCES users(username),

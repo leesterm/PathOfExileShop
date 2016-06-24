@@ -33,7 +33,7 @@ app.get('/',function(req,res,next){
 	if(req.session.username)
 		res.redirect('/user');
 	else
-		res.render('index');
+		res.render('index',{title:"Path Of Exile Shop"});
 });
 //Logging in
 app.post('/',function(req,res,next){
@@ -43,7 +43,7 @@ app.post('/',function(req,res,next){
 		res.redirect('/user/');
 	})
 	.catch(function(err){
-		res.render('index',{error:'Incorrect username or password'});
+		res.render('index',{title:"Path Of Exile Shop",error:'Incorrect username or password'});
 	});
 });
 //User logged in, Get user information, prefix and suffix information, and bases information
@@ -62,7 +62,7 @@ app.get('/user',function(req,res,next){
 						db.any("SELECT * FROM binding,bases WHERE binding.base_id = bases.id AND username='"+req.session.username+"'")
 						.then(function(items){
 							//console.log(items);
-							res.render('user',{username:req.session.username,balance:user.balance,bases:bases,prefixes:prefixes,suffixes:suffixes,items:items});
+							res.render('user',{title:req.session.username+"'s Page",username:req.session.username,balance:user.balance,bases:bases,prefixes:prefixes,suffixes:suffixes,items:items});
 						})
 					})
 				})
@@ -189,7 +189,7 @@ app.get('/user/item_info',function(req,res,next){
 	db.any("SELECT * FROM binding,bases,set_of_affixes,affixes WHERE affixes.id = set_of_affixes.affix_id AND binding.bind_id = set_of_affixes.bind_id AND binding.base_id = bases.id AND binding.bind_id="+req.query.bind_id)
 	.then(function(item){
 		console.log(item);
-		res.render("item_info",{item:item});
+		res.render("item_info",{title:item[0].username+"'s "+item[0].item_name+" Information",item:item});
 	})
 	.catch(function(err){
 		console.log(err);
