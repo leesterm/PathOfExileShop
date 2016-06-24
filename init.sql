@@ -10,8 +10,7 @@ CREATE TABLE users(
 	dob DATE,
 	balance decimal
 );
-
-CREATE TABLE items(
+CREATE TABLE bases(
 	id serial PRIMARY KEY,
 	item_name varchar(32),
 	item_level integer,
@@ -19,17 +18,16 @@ CREATE TABLE items(
 	dex_req integer,
 	str_req integer,
 	int_req integer,
-	item_image text,
-	cost decimal
+	item_image text
 );
-CREATE TABLE weapons(
+/*CREATE TABLE weapons(
 	id serial REFERENCES items(id),
 	item_min_attk integer,
 	item_max_attk integer,
 	block_chance integer,
 	attk_speed decimal,
 	num_of_hands integer
-);
+);*/
 CREATE TABLE affixes(
 	id serial PRIMARY KEY,
 	description text,
@@ -58,17 +56,20 @@ CREATE TABLE affixes(
 	one_h_mace boolean,
 	two_h_mace boolean
 );
-CREATE TABLE bindAffix(
-	affix_id serial REFERENCES affixes(id),
-	item_id serial REFERENCES items(id)
+CREATE TABLE binding(
+	bind_id serial PRIMARY KEY,
+	base_id serial REFERENCES bases(id),
+	username varchar(32) REFERENCES users(username),
+	status varchar(32),
+	cost decimal
 );
-CREATE TABLE store(
-	user_id serial REFERENCES users(id),
-	item_id serial REFERENCES items(id)
+CREATE TABLE set_of_affixes(
+	bind_id serial REFERENCES binding(bind_id),
+	affix_id serial REFERENCES affixes(id)
 );
 CREATE TABLE shopping_cart(
-	user_id serial REFERENCES users(id),
-	item_id serial REFERENCES items(id)
+	username varchar(32) REFERENCES users(username),
+	bind_id serial REFERENCES binding(bind_id)
 );
 
 INSERT INTO users(username,password,address,dob,balance) VALUES ('admin','pass','123 Fake Street','1999-01-08',1000.00);	
@@ -630,7 +631,7 @@ INSERT INTO affixes(description,min_v,max_v,name,level_req,a_type,rings,amulets,
 'Base Stun Recovery +%',	26, 28, '	of Corundum Skin	',79,'Suffix',	false,	false,	true,	true,	true,	true,	true,	true,	false,	false,	false,	false,	false,	false,	false,	false,	false,	false,	false);		
 
 
-INSERT INTO items(item_name,item_level,item_type,dex_req,str_req,int_req,item_image) VALUES
+INSERT INTO bases(item_name,item_level,item_type,dex_req,str_req,int_req,item_image) VALUES
 ('Plate Vest',1,'armour',0,1,0,'Plate_vest.png'),
 ('Chest Plate',6,'armour',0,25,0,'Chest_plate.png'),
 ('Copper Plate',11,'armour',0,53,0,'Copper_plate.png'),
@@ -641,7 +642,7 @@ INSERT INTO items(item_name,item_level,item_type,dex_req,str_req,int_req,item_im
 
 ('Shabby Jerkin',1,'armour',1,0,0,'Shabby_Jerkin.png'),
 ('Strapper Leather',6,'armour',25,0,0,'Strapped_Leather.png'),
-('Buckskin Tunic',11,'armour',53,0,0,'Buckskin_Tinuc.png'),
+('Buckskin Tunic',11,'armour',53,0,0,'Buckskin_Tunic.png'),
 ('Wild Leather',16,'armour',63,0,0,'Wild_Leather.png'),
 ('Full Leather',21,'armour',81,0,0,'Full_Leather.png'),
 ('Sun Leather',26,'armour',91,0,0,'Sun_Leather.png'),

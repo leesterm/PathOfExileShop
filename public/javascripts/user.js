@@ -60,6 +60,7 @@ $(document).ready(function(){
 			url:"/user/item/?name="+document.getElementById('item').value,
 			success:function(res){
 				$('#item-img').attr('src',"/images/"+res.item_image);
+				//$('#item-info').html("<h2>"+res.item_name+"</h2>");
 			},
 			error:function(err){
 				alert("Image not found");

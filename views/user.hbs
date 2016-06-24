@@ -6,7 +6,7 @@
 <form action="/user/sell" method="POST">
 	<span>Base</span>
 	<select name="item" id="item">
-		{{#each items}}
+		{{#each bases}}
 			<option>{{this.item_name}}</option>
 		{{/each}}
 	</select>	
@@ -37,6 +37,7 @@
 
 <div id="item-status">
 	<img id="item-img" src=""/>
+	<div id="item-info"></div>
 	<div id="prefixes">
 		<div id="prefix-info-1"></div>
 		<div id="prefix-info-2"></div>
@@ -49,12 +50,18 @@
 	</div>
 </div>
 
-<h1>You are selling:<h1>
-<ul>
-	{{#each selling}}
-		<li></li>
+<h1>You are selling:</h1>
+<div id="shop">
+	{{#each items}}
+		<div class="shop-item">
+			<form action="/user/item_info" method="GET">
+				<input type="hidden" name="bind_id" value="{{this.bind_id}}">
+				<input type="image" src="/images/{{this.item_image}}" alt="Submit">
+			</form>
+			<div>{{this.cost}} Exalted Orbs</div>
+		</div>
 	{{/each}}
-</ul>
+</div>
 <h1>SHOPPING CART</h1>
 <ul>
 	{{#each cart}}
