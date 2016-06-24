@@ -1,5 +1,9 @@
 DESCRIPTION:
-Simple Node app using Postgres DBMS for user accounts and tasks list.
+Simple shop made using NodeJS
+
+FEATURES:
+User accounts
+Selling/Buying of items
 
 INSTRUCTIONS:
 Run the init.sql file first.
