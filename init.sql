@@ -60,6 +60,7 @@ CREATE TABLE binding(
 	bind_id serial PRIMARY KEY,
 	base_id serial REFERENCES bases(id),
 	username varchar(32) REFERENCES users(username),
+	buyer varchar(32) REFERENCES users(username),
 	status varchar(32),
 	cost decimal
 );
@@ -73,7 +74,10 @@ CREATE TABLE shopping_cart(
 	bind_id serial REFERENCES binding(bind_id)
 );
 
-INSERT INTO users(username,password,address,dob,balance) VALUES ('admin','pass','123 Fake Street','1999-01-08',1000.00);	
+INSERT INTO users(username,password,address,dob,balance) VALUES ('john123','123','123 Fake Street','1999-01-08',100059683.00);	
+INSERT INTO users(username,password,address,dob,balance) VALUES ('jill123','123','1234 Even Faker Street','1900-02-10',22283.00);	
+INSERT INTO users(username,password,address,dob,balance) VALUES ('jack123','123','12345 Fakest Street','1971-11-29',4352283.00);	
+
 INSERT INTO affixes(description,min_v,max_v,name,level_req,a_type,rings,amulets,belts,helmets,gloves,boots,chests,shields,quivers,wands,daggers,claws,sceptres,staffs,bows,one_h_swords_axe,two_h_swords_axe,one_h_mace,two_h_mace) VALUES(
 'Base Min Added Cold Dmg / Base Max Added Cold Dmg',	1, 2, 'Frosted',2,'Prefix',	true,	true,	false,	false,	true,	false,	false,	false,	true,	false,	false,	false,	false,	false,	false,	false,	false,	false,	false),(		
 'Base Min Added Cold Dmg / Base Max Added Cold Dmg',	3, 8, '	Chilled	',13,'Prefix',	true,	true,	false,	false,	true,	false,	false,	false,	true,	false,	false,	false,	false,	false,	false,	false,	false,	false,	false),(		

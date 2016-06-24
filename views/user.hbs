@@ -1,7 +1,6 @@
 <h1>Welcome, {{username}}!</h1>
 <div id="main-content">
 	<div id="sell-window">
-		<h1 id="sell">SELL</h1>
 		<form action="/user/sell" method="POST">
 			<span>Base</span>
 			<select name="item" id="item">
@@ -49,7 +48,7 @@
 	</div>
 
 	<div id="shop">
-		<h1>You are selling:</h1>
+		<h1>You Are Currently Selling:</h1>
 		{{#each items}}
 			<div class="shop-item">
 				<a href="/user/item_info/?bind_id={{this.bind_id}}"><img src="/images/{{this.item_image}}"/></a>

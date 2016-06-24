@@ -249,10 +249,11 @@ app.get('/user/buy/checkout',function(req,res,next){
 	else
 		res.redirect("/");
 });
+//Purcahse items in cart
 app.post('/user/buy/checkout',function(req,res,next){
 	db.one("SELECT SUM(cost) FROM binding,shopping_cart WHERE binding.bind_id=shopping_cart.bind_id AND status='in-cart' AND shopping_cart.username='"+req.session.username+"'")
 	.then(function(total){
-		db.any("UPDATE binding SET status = 'bought' WHERE binding.status = 'in-cart' AND bind_id IN(SELECT bind_id FROM shopping_cart WHERE username='"+req.session.username+"')")
+		db.any("UPDATE binding SET status = 'bought', buyer='"+req.session.username+"' WHERE binding.status = 'in-cart' AND bind_id IN(SELECT bind_id FROM shopping_cart WHERE username='"+req.session.username+"')")
 		.then(function(){
 				db.none("UPDATE users SET balance="+parseFloat(req.body.remaining)+" WHERE username='"+req.session.username+"'")
 				.then(function(){
@@ -261,6 +262,16 @@ app.post('/user/buy/checkout',function(req,res,next){
 						res.redirect("/");
 					})
 				})
+		})
+	})
+});
+//View user inventory
+app.get("/user/inventory",function(req,res,next){
+	db.any("SELECT * FROM binding,bases WHERE status='bought' AND binding.base_id = bases.id AND buyer='"+req.session.username+"'")
+	.then(function(items){
+		db.any("SELECT * FROM binding,bases WHERE status='selling' AND binding.base_id = bases.id AND username='"+req.session.username+"'")
+		.then(function(sellingitems){
+			res.render("inventory",{items:items,sellingitems:sellingitems});
 		})
 	})
 });

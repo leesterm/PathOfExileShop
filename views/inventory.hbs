@@ -1,0 +1,20 @@
+<div id="inventory-stash">
+	<h1>Inventory</h1>
+	{{#each items}}
+		<div class="shop-item">
+			<a href="/user/item_info/?bind_id={{this.bind_id}}"><img src="/images/{{this.item_image}}"/></a>
+			<div>{{this.cost}} Exalted Orbs</div>
+			<div>Seller: {{this.username}}</div>
+		</div>
+	{{/each}}
+</div>
+
+<div id="inventory-sell">
+	<h1>Currently Selling</h1>
+	{{#each sellingitems}}
+		<div class="shop-item">
+			<a href="/user/item_info/?bind_id={{this.bind_id}}"><img src="/images/{{this.item_image}}"/></a>
+			<div>{{this.cost}} Exalted Orbs</div>
+		</div>
+	{{/each}}
+</div>

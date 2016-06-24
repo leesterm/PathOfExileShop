@@ -104,3 +104,17 @@ button a{
 #remaining{
 	color:red;
 }
+#inventory-stash{
+	padding:1%;
+	float:left;
+	display:inline;
+	width:46%;
+	background: rgba(0,0,0,0.5);
+}
+#inventory-sell{
+	padding:1%;
+	width:46%;
+	float:right;
+	display:inline;
+	background: rgba(0,0,0,0.5);
+}
