@@ -267,11 +267,14 @@ app.post('/user/buy/checkout',function(req,res,next){
 });
 //View user inventory
 app.get("/user/inventory",function(req,res,next){
-	db.any("SELECT * FROM binding,bases WHERE status='bought' AND binding.base_id = bases.id AND buyer='"+req.session.username+"'")
-	.then(function(items){
-		db.any("SELECT * FROM binding,bases WHERE status='selling' AND binding.base_id = bases.id AND username='"+req.session.username+"'")
-		.then(function(sellingitems){
-			res.render("inventory",{items:items,sellingitems:sellingitems});
+	db.one("SELECT * FROM users WHERE username='"+req.session.username+"'")
+	.then(function(user){
+		db.any("SELECT * FROM binding,bases WHERE status='bought' AND binding.base_id = bases.id AND buyer='"+req.session.username+"'")
+		.then(function(items){
+			db.any("SELECT * FROM binding,bases WHERE status='selling' AND binding.base_id = bases.id AND username='"+req.session.username+"'")
+			.then(function(sellingitems){
+				res.render("inventory",{items:items,sellingitems:sellingitems,balance:user.balance});
+			})
 		})
 	})
 });
